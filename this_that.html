@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>This or That Button</title>
+	<style>
+		body {
+			background-color: #f2f2f2;
+			font-family: Arial, sans-serif;
+			text-align: center;
+			padding-top: 50px;
+		}
+		h1 {
+			color: #333;
+			font-size: 36px;
+			margin-bottom: 20px;
+		}
+		button {
+			background-color: #4CAF50;
+			border: none;
+			color: white;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+			<h1>This or That Button</h1>
+			<button onclick="askQuestion()">Ask a question!</button>
+			<p id="question"></p>
+			<button id="option1" onclick="chooseOption(1)"></button>
+			<button id="option2" onclick="chooseOption(2)"></button>
+			<p id="result"></p>
+			<script>
+		var questions = [
+			{
+			question: "Would you rather have the ability to fly or the ability to be invisible?",
+			option1: "Fly",
+			option2: "Be invisible",
+			count1: 0,
+			count2: 0
+			},
+			{
+			question: "Would you rather live in the city or in the countryside?",
+			option1: "City",
+			option2: "Countryside",
+			count1: 0,
+			count2: 0
+			},
+			{
+			question: "Would you rather be able to speak all languages or be able to communicate with animals?",
+			option1: "Speak all languages",
+			option2: "Communicate with animals",
+			count1: 0,
+			count2: 0
+			},
+
+		    {
+			question: "Would you rather have the power of teleportation or time travel?",
+			option1: "Teleportation",
+			option2: "Time travel",
+			count1: 0,
+			count2: 0
+		    },
+		    {
+			question: "Would you rather have unlimited money or unlimited time?",
+			option1: "Unlimited money",
+			option2: "Unlimited time",
+			count1: 0,
+			count2: 0
+		    },
+		    {
+			question: "Would you rather be able to read minds or be able to fly?",
+			option1: "Read minds",
+			option2: "Fly",
+			count1: 0,
+			count2: 0
+			},
+			{
+			question: "Would you rather have a personal chef or a personal stylist?",
+			option1: "Personal chef",
+			option2: "Personal stylist",
+			count1: 0,
+			count2: 0
+			},
+			{
+			question: "Would you rather live in the present or in the future?",
+			option1: "Present",
+			option2: "Future",
+			count1: 0,
+			count2: 0
+			},
+			{
+			question: "Would you rather have a personal driver or a private jet?",
+			option1: "Personal driver",
+			option2: "Private jet",
+			count1: 0,
+			count2: 0
+			},
+			{
+			question: "Would you rather be able to time travel or shape shift?",
+			option1: "Time travel",
+			option2: "Shape shift",
+			count1: 0,
+			count2: 0
+			},
+			{
+			question: "Would you rather have super strength or the ability to fly?",
+			option1: "Super strength",
+			option2: "Ability to fly",
+			count1: 0,
+			count2: 0
+			},
+			{
+			question: "Would you rather be an Olympic athlete or a Nobel Prize-winning scientist?",
+			option1: "Olympic athlete",
+			option2: "Nobel Prize-winning scientist",
+			count1: 0,
+			count2: 0
+			},
+		    {
+		    question: "Would you rather be a famous musician or a successful actor?",
+			option1: "Famous musician",
+			option2: "Successful actor",
+			count1: 0,
+			count2: 0
+		    },
+		    {
+			question: "Would you rather travel to the past or the future?",
+			option1: "Past",
+			option2: "Future",
+			count1: 0,
+			count2: 0
+		    },
+			{
+			question: "Would you rather live forever or have unlimited wealth?",
+			option1: "Live forever",
+			option2: "Unlimited wealth",
+			count1: 0,
+			count2: 0
+	    	},
+		    {
+			question: "Would you rather have the power of invisibility or the power of telekinesis?",
+			option1: "Invisibility",
+			option2: "Telekinesis",
+			count1: 0,
+			count2: 0
+		    },
+		    {
+			question: "Would you rather have a photographic memory or the ability to forget anything you want?",
+			option1: "Photographic memory",
+			option2: "Ability to forget",
+			count1: 0,
+			count2: 0
+			},
+			{
+			question: "Would you rather have the power to read minds or the power to control minds?",
+			option1: "Read Minds",
+			option2: "Control Minds",
+			count1: 0,
+			count2: 0
+			},
+			{
+			question: "Would you rather be stranded on a deserted island alone or with someone you can't stand?",
+			option1: "Alone",
+			option2: "With Someone You Can't Stand",
+			count1: 0,
+			count2: 0
+			},
+			{
+			question: "Would you rather have the ability to time travel or teleport?",
+			option1: "Time Travel",
+			option2: "Teleport",
+			count1: 0,
+			count2: 0
+			},
+			{
+			question: "Would you rather have a pet dragon or a unicorn?",
+			option1: "Dragon",
+			option2: "Unicorn",
+			count1: 0,
+			count2: 0
+			},
+			{
+			question: "Would you rather have the ability to breathe underwater or the ability to fly?",
+			option1: "Breathe Underwater",
+			option2: "Fly",
+			count1: 0,
+			count2: 0
+			},
+			{
+			question: "Would you rather be able to talk to animals or speak all human languages?",
+			option1: "Talk to Animals",
+			option2: "Speak All Human Languages",
+			count1: 0,
+			count2: 0
+			}
+
+			];
+
+			var currentQuestionIndex = -1;
+
+			function askQuestion() {
+				currentQuestionIndex = Math.floor(Math.random() * questions.length);
+				var currentQuestion = questions[currentQuestionIndex];
+				document.getElementById("question").innerHTML = currentQuestion.question;
+				document.getElementById("option1").innerHTML = currentQuestion.option1;
+				document.getElementById("option2").innerHTML = currentQuestion.option2;
+				document.getElementById("result").innerHTML = "";
+			}
+
+			function chooseOption(option) {
+				var currentQuestion = questions[currentQuestionIndex];
+				if (option === 1) {
+					currentQuestion.count1++;
+					document.getElementById("result").innerHTML = "You have chosen option 1 - " + currentQuestion.option1 + " (Total count: " + currentQuestion.count1 + ")";
+				} else if (option === 2) {
+					currentQuestion.count2++;
+					document.getElementById("result").innerHTML = "You have chosen option 2 - " + currentQuestion.option2 + " (Total count: " + currentQuestion.count2 + ")";
+				}
+			}
+	</script>
+</body>
+</html>
